@@ -16,5 +16,7 @@ namespace Tarea
             this.Duracion = duracion;
             this.Descripcion = descripcion;
         }
+
+        
     }
 }

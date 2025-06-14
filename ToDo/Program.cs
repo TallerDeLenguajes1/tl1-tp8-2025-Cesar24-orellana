@@ -1,7 +1,7 @@
 ﻿using System;
 using Tarea;
 var tareasPendientes = new List<Tareas>( );
-//var tareasRealizas = new List<Tareas>();
+var tareasRealizas = new List<Tareas>();
 
 int Cantidad;
 string? Scantidad;
@@ -13,7 +13,9 @@ crearTareas(tareasPendientes, Cantidad);
 Console.WriteLine("---------");
 Console.WriteLine("Lista de Tareas Pendientes");
 MostrarLista(tareasPendientes);
-
+MoverTareas(tareasPendientes, tareasRealizas);
+Console.WriteLine("Lista de Tareas Realizadas");
+MostrarLista(tareasPendientes);
 
 void crearTareas(List<Tareas> ListaTarea, int Cantidad)
 {
@@ -33,7 +35,7 @@ for (int i = 0; i < Cantidad; i++)
         bool resultTime2 = int.TryParse(Stiempo, out tiempo);
     }
 
-    Console.WriteLine("Ingrese la descripcion de su Tarea:");
+    Console.WriteLine($"Ingrese la descripcion de su Tarea{i+1}:");
     Descripcion = Console.ReadLine();
 
 
@@ -50,4 +52,25 @@ void MostrarLista(List<Tareas> ListasTarea){
     Console.WriteLine($"Duracion:{lista.Duracion}");
     Console.WriteLine("---------");
     }
+}
+
+void MoverTareas(List<Tareas> pendiente, List<Tareas> realizada){
+int ID=0;
+string? Sid;
+Console.WriteLine("Escriba el ID que desea marcar como Completada");
+Sid = Console.ReadLine();
+bool resultID = int.TryParse(Sid, out ID);
+int Cantidad = pendiente.Count();
+for (int i = 0; i < Cantidad; i++)
+{
+    if (pendiente[i].Tareaid = ID)
+    {
+        var tareaMover = new Tareas(pendiente[i].Tareaid, pendiente[i].Descripcion, pendiente[i].Duracion);
+    }
+    if (tareaMover != null)
+    {
+        realizada.Add(tareaMover);
+        pendiente.Remove(tareaMover);
+    } 
+}
 }

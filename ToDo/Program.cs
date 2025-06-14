@@ -1,29 +1,53 @@
-﻿using Tarea;
-//List<Tareas> tareasPendientes = new List<Tareas>( );
-List<Tareas> tareasRealizas = new List<Tareas>();
+﻿using System;
+using Tarea;
+var tareasPendientes = new List<Tareas>( );
+//var tareasRealizas = new List<Tareas>();
 
 int Cantidad;
 string? Scantidad;
 Console.WriteLine("Ingrese la cantidad de Tareas:");
 Scantidad = Console.ReadLine();
 bool resultCant = int.TryParse(Scantidad, out Cantidad);
-Tareas[] tareasPendientes = new Tareas[Cantidad];
-int ID = 100, tiempo = 0;
+
+crearTareas(tareasPendientes, Cantidad);
+Console.WriteLine("---------");
+Console.WriteLine("Lista de Tareas Pendientes");
+MostrarLista(tareasPendientes);
+
+
+void crearTareas(List<Tareas> ListaTarea, int Cantidad)
+{
+int tiempo = 0;
 string? Stiempo = "";
 string? Descripcion;
 for (int i = 0; i < Cantidad; i++)
 {
+    Console.WriteLine("Ingrese la duracion de su Tarea, (10 a 100)min:");
+    Stiempo = Console.ReadLine();
+    bool resultTime = int.TryParse(Stiempo, out tiempo);
+    while (tiempo < 10 || tiempo > 100)
+    {
+        Console.WriteLine(@"!! El tiempo tiene que estar definido entre 10 a 100 min");
+        Console.WriteLine("Ingrese una nueva duracion entre 10 a 100 min");
+        Stiempo = Console.ReadLine();
+        bool resultTime2 = int.TryParse(Stiempo, out tiempo);
+    }
+
     Console.WriteLine("Ingrese la descripcion de su Tarea:");
     Descripcion = Console.ReadLine();
-    tareasPendientes[i].FuncionVerificacion(Stiempo, tiempo);
-    //tareasPendientes[i] = new Tareas(ID, Descripcion);
-    ID++;
+
+
+    var tareaAux = new Tareas(i+1,Descripcion,tiempo);
+    ListaTarea.Add(tareaAux);
 }
-Console.WriteLine("Lista de Tareas Pendientes");
-foreach (var lista in tareasPendientes)
-{
+}
+
+void MostrarLista(List<Tareas> ListasTarea){
+    foreach (var lista in ListasTarea)
+    {
     Console.WriteLine($"Tarea: {lista.Tareaid}");
     Console.WriteLine($"Descripcion:{lista.Descripcion}");
     Console.WriteLine($"Duracion:{lista.Duracion}");
     Console.WriteLine("---------");
+    }
 }

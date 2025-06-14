@@ -15,7 +15,7 @@ Console.WriteLine("Lista de Tareas Pendientes");
 MostrarLista(tareasPendientes);
 MoverTareas(tareasPendientes, tareasRealizas);
 Console.WriteLine("Lista de Tareas Realizadas");
-MostrarLista(tareasPendientes);
+MostrarLista(tareasRealizas);
 
 void crearTareas(List<Tareas> ListaTarea, int Cantidad)
 {
@@ -63,14 +63,15 @@ bool resultID = int.TryParse(Sid, out ID);
 int Cantidad = pendiente.Count();
 for (int i = 0; i < Cantidad; i++)
 {
-    if (pendiente[i].Tareaid = ID)
+    if (pendiente[i].Tareaid == ID)
     {
         var tareaMover = new Tareas(pendiente[i].Tareaid, pendiente[i].Descripcion, pendiente[i].Duracion);
-    }
+
     if (tareaMover != null)
     {
         realizada.Add(tareaMover);
         pendiente.Remove(tareaMover);
     } 
+    }
 }
 }

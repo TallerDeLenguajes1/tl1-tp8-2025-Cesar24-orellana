@@ -3,25 +3,43 @@ using Tarea;
 var tareasPendientes = new List<Tareas>();
 var tareasRealizas = new List<Tareas>();
 
-int Cantidad;
-string? Scantidad;
-Console.WriteLine("Ingrese la cantidad de Tareas:");
-Scantidad = Console.ReadLine();
-bool resultCant = int.TryParse(Scantidad, out Cantidad);
-
-crearTareas(tareasPendientes, Cantidad);
-Console.WriteLine("---------");
-Console.WriteLine("Lista de Tareas Pendientes");
-MostrarLista(tareasPendientes);
-MoverTareas(tareasPendientes, tareasRealizas);
-Console.WriteLine("Lista de Tareas Realizadas");
-MostrarLista(tareasRealizas);
-Console.WriteLine("---------");
-Console.WriteLine("Lista de Tareas Pendientes");
-MostrarLista(tareasPendientes);
-
-void crearTareas(List<Tareas> ListaTarea, int Cantidad)
+int salir = 1;
+int id = 1;
+Console.WriteLine("- - Bienvenido/a - -");
+do
 {
+    menu();
+    if (int.TryParse(Console.ReadLine(), out int opcion))
+    {
+        switch (opcion)
+        {
+            case 1:
+                crearTareas(tareasPendientes, id);
+                break;
+            case 2:
+                MoverTareas(tareasPendientes, tareasRealizas);
+                break;
+            case 3:
+                Console.WriteLine("Lista de Tareas Pendientes");
+                MostrarLista(tareasPendientes);
+                break;
+            case 4:
+                Console.WriteLine("Lista de Tareas Realizadas");
+                MostrarLista(tareasRealizas);
+                break;
+            default:
+                salir = 0;
+                break;
+        }
+    }
+
+} while (salir != 0);
+
+
+void crearTareas(List<Tareas> ListaTarea, int id)
+{
+    Random random = new Random();
+    int Cantidad = random.Next(3, 6);
     int tiempo = 0;
     string? Stiempo = "";
     string? Descripcion;
@@ -38,12 +56,13 @@ void crearTareas(List<Tareas> ListaTarea, int Cantidad)
             bool resultTime2 = int.TryParse(Stiempo, out tiempo);
         }
 
-        Console.WriteLine($"Ingrese la descripcion de su Tarea{i + 1}:");
+        Console.WriteLine($"Ingrese la descripcion de su Tarea {i + 1}:");
         Descripcion = Console.ReadLine();
 
 
-        var tareaAux = new Tareas(i + 1, Descripcion, tiempo);
+        var tareaAux = new Tareas(id, Descripcion, tiempo);
         ListaTarea.Add(tareaAux);
+        id++;
     }
 }
 
@@ -97,4 +116,14 @@ for (int i = 0; i < Cantidad; i++)
             }
         }
     } */
+}
+
+void menu()
+{
+    Console.WriteLine("--> Menu Principal <--");
+    Console.WriteLine("1- Cargar Nuevas tareas");
+    Console.WriteLine("2- Marcar como Realizada");
+    Console.WriteLine("3- Mostrar Lista de tareas Pendientes");
+    Console.WriteLine("4- Mostrar Lista de tareas Realizadas");
+    Console.WriteLine("0- Salir");
 }

@@ -15,6 +15,7 @@ namespace CalculadoraHistorial
             if (tipo == Operacion.TipoOperacion.Division && valor == 0) return false;
             Operacion operacion = new Operacion(resultado, valor, tipo);
             resultado = operacion.Resultado;
+            historial.Add(operacion);
             return true;
         }
 

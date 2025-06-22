@@ -42,7 +42,7 @@ namespace CalculadoraHistorial
             };
             return operacion == TipoOperacion.limpiar
             ? "Se Limpio el Resultado"
-            : $"{resultadoAnterior}  {simbolo} {nuevoValor} = {Resultado}";
+            : $"{resultadoAnterior} {simbolo} {nuevoValor} = {Resultado}";
         }
         public enum TipoOperacion
         {
@@ -52,36 +52,5 @@ namespace CalculadoraHistorial
             Division,
             limpiar
         }
-        /* private double resultado;
-        public double Resultado
-        {
-            get => resultado;
-            set => resultado = value;
-        }
-        public double dato
-        {
-            get => resultado;
-            set => resultado = value;
-        }
-        public void Sumar(double termino)
-        {
-            resultado += termino;
-        }
-        public void Resta(double termino)
-        {
-            resultado -= termino;
-        }
-        public void Multiplicacion(double termino)
-        {
-            resultado *= termino;
-        }
-        public void Dividir(double termino)
-        {
-            resultado /= termino;
-        }
-        public void limpiar()
-        {
-            resultado = 0;
-        } */
     }
 }
